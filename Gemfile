@@ -65,3 +65,5 @@ group :test do
 end
 
 gem "sitepress-rails", "~> 4.0"
+
+gem "hotwire-livereload", "~> 2.0", :group => :development
