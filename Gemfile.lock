@@ -105,6 +105,7 @@ GEM
       reline (>= 0.3.8)
     dotenv (3.1.7)
     drb (2.2.1)
+    dry-initializer (3.2.0)
     ed25519 (1.3.0)
     erubi (1.13.1)
     et-orbi (1.2.11)
@@ -403,6 +404,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dry-initializer (~> 3.2)
   hotwire-livereload (~> 2.0)
   jbuilder
   jsbundling-rails
