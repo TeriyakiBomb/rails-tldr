@@ -23,16 +23,12 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
   </head>
 
-  <body class="bg-neutral-100 text-neutral-900">
+  <body class="bg-neutral-100 text-neutral-900 pt-8">
+    <nav class="container mx-auto">
+      <a href="/" class="text-3xl font-black"><span class="text-red-600">Rails</span><span class="text-neutral-500 align-super text-sm pl-1">tl;dr</span></a>
+    </nav>
     <main class="container mx-auto py-8">
-      <nav>
-        <a href="/" class="text-3xl font-black"><span class="text-red-600">Rails</span><span class="text-neutral-500 align-super text-sm pl-2">TL;DR</span></a>
-      </nav>
       <%= yield %>
     </main>
-
-    <%= component "Dave" do %>
-    hello
-    <% end %>
   </body>
 </html>
