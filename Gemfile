@@ -70,3 +70,4 @@ gem "hotwire-livereload", "~> 2.0", group: :development
 gem "view_component"
 
 gem "dry-initializer", "~> 3.2"
+gem "redcarpet"
