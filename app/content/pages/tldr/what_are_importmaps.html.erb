@@ -7,75 +7,80 @@ title: What are importmaps?
       It's the default, but optional way of importing Javascript dependencies without the need for a bundler like webpack.
     <% end %>
 
-    ## Concept
+    <% component.with_markdown_section do %>
 
-    - Import maps let the browser handle JavaScript module imports natively.
-    - Instead of bundling dependencies into a single file, the browser loads each module individually as specified in the import map.
-    - Dependencies are fetched directly from a CDN (e.g., [jsdelivr](https://www.jsdelivr.com/) or [esm.sh](https://esm.sh/)).
+      Import maps in Rails provide a way to manage JavaScript dependencies without requiring a bundler like Webpack or Vite.
+      **It's the default way of working with Javascript dependencies since Rails 7.0.**
 
-    ###  **Why Use Import Maps?**
+      They allow you to specify your JavaScript modules directly in a manifest file (`config/importmap.rb`) and load them in the browser using ES Modules.
 
-    - No need for a bundler like Webpack, Vite, or Rollup.
-    - Simpler setup and faster iteration for smaller projects.
-    - Minimal runtime overhead as the browser handles imports.
-    - Reduced complexity, as you avoid configuring build tools.
+      ## Concept
 
-    ### **How It Works in Rails**
+      - Import maps let the browser handle JavaScript module imports natively.
+      - Instead of bundling dependencies into a single file, the browser loads each module individually as specified in the import map.
+      - Dependencies are fetched directly from a CDN (e.g., [jsdelivr](https://www.jsdelivr.com/) or [esm.sh](https://esm.sh/)).
 
-    - The `importmap-rails` gem manages your import map.
-    - Dependencies are declared in `config/importmap.rb` using the `pin` command.
-    - Rails generates an HTML `importmap` tag, which browsers read to resolve JavaScript module imports.
+      ### Why Use Import Maps?
 
-    ### **Adding New Packages**
+      - No need for a bundler like Webpack, Vite, or Rollup.
+      - Simpler setup and faster iteration for smaller projects.
+      - Minimal runtime overhead as the browser handles imports.
+      - Reduced complexity, as you avoid configuring build tools.
 
-    Use the Rails generator to pin new dependencies:
+      ### How It Works in Rails
 
-    `rails importmap:pin <package-name>`
+      - The `importmap-rails` gem manages your import map.
+      - Dependencies are declared in `config/importmap.rb` using the `pin` command.
+      - Rails generates an HTML `importmap` tag, which browsers read to resolve JavaScript module imports.
 
-    For example:
+      ### Adding New Packages
 
-    `rails importmap:pin lodash`
+      Use the Rails generator to pin new dependencies:
+      `rails importmap:pin <package-name>`
 
-    This automatically pins the `lodash` package from a CDN.
+      For example:
+      `rails importmap:pin lodash`
 
-    ###  **Pros and Cons**
+      This automatically pins the `lodash` package from a CDN.
 
-    **Pros:**
+      ###  Pros and Cons
 
-    - Simpler and faster setup for projects with straightforward JavaScript needs.
-    - No need for Node.js or a complex build pipeline.
-    - Great for Rails apps focused on server-rendered views.
+      **Pros:**
 
-    **Cons:**
+      - Simpler and faster setup for projects with straightforward JavaScript needs.
+      - No need for Node.js or a complex build pipeline.
 
-    - May not scale well for projects requiring advanced JavaScript features like tree-shaking, large libraries, or complex build-time optimizations.
-    - Some packages will not work as expected
+      **Cons:**
 
-    ### **When to Use**
+      - May not scale well for projects requiring advanced JavaScript features like tree-shaking, large libraries, or complex build-time optimizations.
+      - Some packages will not work as expected
 
-    Use import maps if:
+      ### When to use importmaps
+      Use import maps if:
 
-    - You’re building a small to medium-sized Rails app with minimal JavaScript.
-    - You want to avoid the complexity of bundlers.
-    - You don’t need advanced JavaScript features like dynamic imports or environment-specific builds.
+      - You’re building a small to medium-sized Rails app with minimal JavaScript.
+      - You want to avoid the complexity of bundlers.
+      - You don’t need advanced JavaScript features like dynamic imports or environment-specific builds.
 
-    ### Do I need to use it?
+      ### Do I need to use it?
 
-    **No, you do not.** When creating a new Rails project you can specify your chosen strategy for handling Javascript.
+      **No, you do not.** When creating a new Rails project you can specify your chosen strategy for handling Javascript.
 
-    There are a few options included with Rails:
+      There are a few options included with Rails:
 
-    - importmap (Default)
-    - bun
-    - webpack
-    - esbuild
-    - rollup
+      - importmap (Default)
+      - bun
+      - webpack
+      - esbuild
+      - rollup
 
-    In your terminal you just need to add a flag when generating a new project:
+      In your terminal you just need to add a flag when generating a new project:
 
-    For example, if you want to use esbuild:
+      For example, if you want to use esbuild:
+      `rails new <YOUR_APP_NAME> -j esbuild` or if you're a fancy, formal person `rails new <YOUR_APP_NAME> --js=esbuild`
 
-    `rails new <YOUR_APP_NAME> -j esbuild` or if you're a fancy, formal person `rails new <YOUR_APP_NAME> --js=esbuild`
-
-    You can also use Vite ruby  ADD A LINK You can also choose to migrate from Importmaps at a later stage without too much friction.
+      You can also use Vite ruby  ADD A LINK You can also choose to migrate from Importmaps at a later stage without too much friction.
+    <% end %>
   <% end %>
+
+

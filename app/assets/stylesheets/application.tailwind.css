@@ -8,7 +8,7 @@ body {
 
 #tldr-body {
   a {
-    @apply underline text-teal-500 font-semibold;
+    @apply underline text-teal-500 font-semibold hover:text-teal-400;
   }
 
   h1,
@@ -49,5 +49,13 @@ body {
 
   code {
     @apply bg-neutral-200 text-sm py-0.5 px-1 rounded;
+  }
+
+  p {
+    @apply py-4;
+  }
+
+  .shiny {
+    @apply bg-gradient-to-r from-pink-500 to-amber-500 bg-clip-text text-transparent font-semibold;
   }
 }

@@ -2,49 +2,36 @@
 title: Is Rails slow?
 ---
 
-<div class="flex flex-col space-y-4 max-w-5xl">
-  <h1 class="text-4xl font-black"><%= current_page.data["title"] %></h1>
+<%= component "TldrContainer", current_page: current_page do |component| %>
 
-  <div class="py-2 pr-2.5 pl-1 bg-teal-200 border border-teal-500 rounded-xl text-teal-800 font-semibold w-fit text-xs">
-    <span class="bg-teal-500 text-white font-black rounded-lg py-1 px-2 mr-2">tl;dr</span>
+  <% component.with_tldr do %>
     Not really, no.
-  </div>
+  <% end %>
 
- <%= render_markdown do %>
-  **There's lots of discourse about "Rails being slow and unable to scale to X" but for most applications, it is simply a non-issue.**
+<% component.with_markdown_section do %>
 
-  Every app is different, but generally speaking Rails speed is inline with most other frameworks of it's size and the true bottleneck for performance is generally with I/O and database access, rather than the speed of the framework itself.
+    **There's lots of discourse about "Rails being slow and unable to scale to X" but for most applications, it is simply a non-issue.**
 
-  There is however a definite tradeoff in terms of execution speed and development velocity with Rails. Productivity and developer happiness is at the forefront for Rails, and the framework trades some raw speed to achieve this. Rails developers can get a lot of work done, fast. So speed is subjective from that perspective.
+    Every app is different, but generally speaking Rails speed is inline with most other frameworks of it's size and the true bottleneck for performance is generally with I/O and database access, rather than the speed of the framework itself. There is however a definite tradeoff in terms of execution speed and development velocity with Rails. Productivity and developer happiness is at the forefront for Rails, and the framework trades some raw speed to achieve this. Rails developers can get a lot of work done, fast. So speed is subjective from that perspective.
 
-  Rails does scale well however, with most small to medium sized apps running just fine on a relatively cheap VPS. For those few operating at a far larger scale, infrastructure cost will often be less important than the operational cost of fewer developers being vastly more agile and productive. This is where Rails shines.
+    Rails does scale well however, with most small to medium sized apps running just fine on a relatively cheap VPS. For those few operating at a far larger scale, infrastructure cost will often be less important than the operational cost of fewer developers being vastly more agile and productive. This is where Rails <span class="shiny">shines.</span>
 
-  Rails also has robust in-built caching, ruby supports C and  more recently Rust extensions that can be leveraged for more performance intensive tasks. There is also [Crystal](https://crystal-lang.org) a compiled language with a syntax very similar to Ruby, with very good performance comparable to C# or go.
+    ## Reasons Rails Might Be Perceived as Slow
 
-  Ruby is a more memory hungry language than some others and concurrency via [fibers](https://blog.saeloun.com/2022/03/01/ruby-fibers-101/) is a more recent addition to the language that is not heavily leverage by Rails at this point.
+    1. **Ruby's Performance**
+        Ruby is an interpreted language, so it’s not as fast as compiled languages like C++ or Go. Rails inherits this limitation because it’s built on Ruby. Ruby supports C, and more recently Rust extensions that can be leveraged for more performance intensive tasks. There is also [Crystal](https://crystal-lang.org) a compiled language with a syntax very similar to Ruby, with very good performance comparable to C# or go.
+        Ruby is a more memory hungry language than some others and concurrency, via [fibers](https://blog.saeloun.com/2022/03/01/ruby-fibers-101/) is a more recent addition to the language that is not heavily leverage by Rails at this point.
+        In terms of pure speed, ruby is broadly comparable to python. Though in recent years ruby is generally faster than python is many scenarios. The ruby core team have recently been [making strides with language performance](https://speed.yjit.org), that gap may widen further in future.
+        The reality is though, compute is cheap and computers are fast. Most languages are perfectly acceptable for web applications. If a language appeals to you, you should use it.
 
-  In terms of pure speed, ruby is a dynamic interpreted language with performance broadly comparable to python. Though in recent years ruby is generally faster than python is many scenarios.
+    2. **Rails' Abstractions**
+        Rails emphasizes developer productivity with many abstractions and conveniences (e.g., ActiveRecord, helpers), which can add overhead compared to lower-level frameworks. These choices are a big part of what makes rails so productive and pleasant to use.
 
-  The ruby core team have recently been [making strides with language performance](https://speed.yjit.org), that gap may widen further in future.
-  The reality is though, compute is cheap and computers are fast. Most languages are perfectly acceptable for web applications. If a language appeals to you, you should use it.
+    3. **Request Latency**
+        If your app handles high traffic, Rails' default threading model (one request per thread) can become a bottleneck unless properly optimized.
 
-  ## **Reasons Rails Might Be Perceived as Slow**
+    5. **Default Configurations**
+        Rails ships with defaults that favor convenience and simplicity, not necessarily maximum performance. Out-of-the-box setups might not be optimized for production. However, Rails is not limited by its defaults and high performance applications exist. Rails is used by some of the highest demand websites in the world, including GitHub and Shopify.
 
-  1. **Ruby's Performance**
-      Ruby is an interpreted language, so it’s not as fast as compiled languages like C++ or Go. Rails inherits this limitation because it’s built on Ruby.
-
-  2. **Rails' Abstractions**
-      Rails emphasizes developer productivity with many abstractions and conveniences (e.g., ActiveRecord, helpers), which can add overhead compared to lower-level frameworks.
-
-  3. **Database Queries**
-      Inefficient database usage (e.g., N+1 queries) can cause significant slowdowns. This is not a Rails-specific issue but is more likely due to improper use of ActiveRecord or lack of query optimization.
-
-  4. **Request Latency**
-      If your app handles high traffic, Rails' default threading model (one request per thread) can become a bottleneck unless properly optimized.
-
-  5. **Default Configurations**
-      Rails ships with defaults that favor convenience and simplicity, not necessarily maximum performance. Out-of-the-box setups might not be optimized for production. However, Rails is not limited by its defaults and high performance applications exist. Rails is used by some of the highest demand websites in the world, including GitHub and Shopify.
-
-  Rails isn't the fastest framework, but its tradeoff between developer productivity and performance makes it a solid choice for most web applications. With proper optimizations, it can handle very high traffic and complex applications effectively.
- <% end %>
-</div>
+  <% end %>
+<% end %>

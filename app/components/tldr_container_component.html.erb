@@ -8,9 +8,14 @@
   </div>
 
   <div id="tldr-body">
-    <%= render_markdown do %>
-      <%= content %>
+
+    <% markdown_sections.each do |md| %>
+      <%= render_markdown do %>
+        <%= md %>
+      <% end %>
     <% end %>
   </div>
+
+  <%= content %>
 
 </div>
