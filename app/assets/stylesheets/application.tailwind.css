@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply text-lg tracking-wide;
+}
+
 h1,
 h2,
 h3,
 h4 {
   @apply font-black;
+}
+h2,
+h3 {
+  @apply pt-4;
 }
 
 h1 {
@@ -36,4 +44,10 @@ ol {
 
 code {
   @apply bg-neutral-200 text-sm py-0.5 px-1 rounded;
+}
+
+article {
+  a {
+    @apply underline text-teal-500 font-semibold;
+  }
 }
