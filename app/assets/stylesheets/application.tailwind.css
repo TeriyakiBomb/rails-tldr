@@ -6,48 +6,48 @@ body {
   @apply text-lg tracking-wide;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  @apply font-black;
-}
-h2,
-h3 {
-  @apply pt-4;
-}
-
-h1 {
-  @apply text-3xl;
-}
-
-h2 {
-  @apply text-2xl;
-}
-
-h3 {
-  @apply text-xl;
-}
-
-ul,
-ol {
-  @apply pl-8;
-}
-
-ul {
-  @apply list-disc;
-}
-
-ol {
-  @apply list-decimal;
-}
-
-code {
-  @apply bg-neutral-200 text-sm py-0.5 px-1 rounded;
-}
-
-article {
+#tldr-body {
   a {
     @apply underline text-teal-500 font-semibold;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-black;
+  }
+  h2,
+  h3 {
+    @apply pt-4;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  ul,
+  ol {
+    @apply pl-8;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  code {
+    @apply bg-neutral-200 text-sm py-0.5 px-1 rounded;
   }
 }

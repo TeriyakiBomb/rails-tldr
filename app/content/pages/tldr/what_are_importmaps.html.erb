@@ -1,87 +1,81 @@
 ---
 title: What are importmaps?
 ---
+  <%= component "TldrContainer", current_page: current_page do |component| %>
 
-<div class="flex flex-col space-y-4">
-  <h1 class="text-4xl font-black"><%= current_page.data["title"] %></h1>
+    <% component.with_tldr do %>
+      It's the default, but optional way of importing Javascript dependencies without the need for a bundler like webpack.
+    <% end %>
 
-  <div class="py-2 pr-2.5 pl-1 bg-teal-200 border border-teal-500 rounded-xl text-teal-800 font-semibold w-fit text-xs">
-    <span class="bg-teal-500 text-white font-black rounded-lg py-1 px-2 mr-2">tl;dr</span>
-    It's the default, but optional way of importing Javascript dependencies without the need for a bundler like webpack.
-  </div>
-  <article>
-    <%= render_markdown do %>
-      ## Concept
+    ## Concept
 
-      - Import maps let the browser handle JavaScript module imports natively.
-      - Instead of bundling dependencies into a single file, the browser loads each module individually as specified in the import map.
-      - Dependencies are fetched directly from a CDN (e.g., [jsdelivr](https://www.jsdelivr.com/) or [esm.sh](https://esm.sh/)).
+    - Import maps let the browser handle JavaScript module imports natively.
+    - Instead of bundling dependencies into a single file, the browser loads each module individually as specified in the import map.
+    - Dependencies are fetched directly from a CDN (e.g., [jsdelivr](https://www.jsdelivr.com/) or [esm.sh](https://esm.sh/)).
 
-      ###  **Why Use Import Maps?**
+    ###  **Why Use Import Maps?**
 
-      - No need for a bundler like Webpack, Vite, or Rollup.
-      - Simpler setup and faster iteration for smaller projects.
-      - Minimal runtime overhead as the browser handles imports.
-      - Reduced complexity, as you avoid configuring build tools.
+    - No need for a bundler like Webpack, Vite, or Rollup.
+    - Simpler setup and faster iteration for smaller projects.
+    - Minimal runtime overhead as the browser handles imports.
+    - Reduced complexity, as you avoid configuring build tools.
 
-      ### **How It Works in Rails**
+    ### **How It Works in Rails**
 
-      - The `importmap-rails` gem manages your import map.
-      - Dependencies are declared in `config/importmap.rb` using the `pin` command.
-      - Rails generates an HTML `importmap` tag, which browsers read to resolve JavaScript module imports.
+    - The `importmap-rails` gem manages your import map.
+    - Dependencies are declared in `config/importmap.rb` using the `pin` command.
+    - Rails generates an HTML `importmap` tag, which browsers read to resolve JavaScript module imports.
 
-      ### **Adding New Packages**
+    ### **Adding New Packages**
 
-      Use the Rails generator to pin new dependencies:
+    Use the Rails generator to pin new dependencies:
 
-      `rails importmap:pin <package-name>`
+    `rails importmap:pin <package-name>`
 
-      For example:
+    For example:
 
-      `rails importmap:pin lodash`
+    `rails importmap:pin lodash`
 
-      This automatically pins the `lodash` package from a CDN.
+    This automatically pins the `lodash` package from a CDN.
 
-      ###  **Pros and Cons**
+    ###  **Pros and Cons**
 
-      **Pros:**
+    **Pros:**
 
-      - Simpler and faster setup for projects with straightforward JavaScript needs.
-      - No need for Node.js or a complex build pipeline.
-      - Great for Rails apps focused on server-rendered views.
+    - Simpler and faster setup for projects with straightforward JavaScript needs.
+    - No need for Node.js or a complex build pipeline.
+    - Great for Rails apps focused on server-rendered views.
 
-      **Cons:**
+    **Cons:**
 
-      - May not scale well for projects requiring advanced JavaScript features like tree-shaking, large libraries, or complex build-time optimizations.
-      - Some packages will not work as expected
+    - May not scale well for projects requiring advanced JavaScript features like tree-shaking, large libraries, or complex build-time optimizations.
+    - Some packages will not work as expected
 
-      ### **When to Use**
+    ### **When to Use**
 
-      Use import maps if:
+    Use import maps if:
 
-      - You’re building a small to medium-sized Rails app with minimal JavaScript.
-      - You want to avoid the complexity of bundlers.
-      - You don’t need advanced JavaScript features like dynamic imports or environment-specific builds.
+    - You’re building a small to medium-sized Rails app with minimal JavaScript.
+    - You want to avoid the complexity of bundlers.
+    - You don’t need advanced JavaScript features like dynamic imports or environment-specific builds.
 
-      ### Do I need to use it?
+    ### Do I need to use it?
 
-      **No, you do not.** When creating a new Rails project you can specify your chosen strategy for handling Javascript.
+    **No, you do not.** When creating a new Rails project you can specify your chosen strategy for handling Javascript.
 
-      There are a few options included with Rails:
+    There are a few options included with Rails:
 
-      - importmap (Default)
-      - bun
-      - webpack
-      - esbuild
-      - rollup
+    - importmap (Default)
+    - bun
+    - webpack
+    - esbuild
+    - rollup
 
-      In your terminal you just need to add a flag when generating a new project:
+    In your terminal you just need to add a flag when generating a new project:
 
-      For example, if you want to use esbuild:
+    For example, if you want to use esbuild:
 
-      `rails new <YOUR_APP_NAME> -j esbuild` or if you're a fancy, formal person `rails new <YOUR_APP_NAME> --js=esbuild`
+    `rails new <YOUR_APP_NAME> -j esbuild` or if you're a fancy, formal person `rails new <YOUR_APP_NAME> --js=esbuild`
 
-      You can also use Vite ruby  ADD A LINK You can also choose to migrate from Importmaps at a later stage without too much friction.
-     <% end %>
-  </article>
-</div>
+    You can also use Vite ruby  ADD A LINK You can also choose to migrate from Importmaps at a later stage without too much friction.
+  <% end %>
