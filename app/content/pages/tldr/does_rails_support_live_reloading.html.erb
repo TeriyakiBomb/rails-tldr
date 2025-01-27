@@ -1,0 +1,35 @@
+---
+title: Does Rails support Live reload in development?
+---
+
+<%= component "TldrContainer", current_page: current_page do |component| %>
+
+  <% component.with_tldr do %>
+    Yes! - Theres a bunch of ways to do this, all of them pretty simple.
+  <% end %>
+
+<%= component "Article::Markdown" do %>
+
+   If you've come from a lot of other frameworks, you might be used to hot/live reload in your browser during development. Rails does this too! Let's go through some of the options:
+   <% end %>
+
+   <%= component "Badge" %>
+   Note: for all of these (And in general) be sure to run `bin/dev` from your rails root directory instead of `rails/server`, if you'd like to know why, click here.
+
+<%= component "Article::Markdown" do %>
+
+
+
+   ## Hotwire spark
+   This is the (At time of writing) newly released first party live reload solution for Rails. It is not included by default at this time, but installation and confguration is a breeze. Spark is still fairly new and there's a few teething options
+
+   ## Hotwire livereload
+   https://github.com/kirillplatonov/hotwire-livereload
+   This gem is just as easy to use, a single line in your gemfile and you're basically done.
+
+   ## Rails live reload
+   https://github.com/railsjazz/rails_live_reload
+   This takes just one more command than the other two to get working.
+
+  <% end %>
+<% end %>

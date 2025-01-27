@@ -8,7 +8,7 @@ title: Is Rails slow?
     Not really, no.
   <% end %>
 
-<% component.with_markdown_section do %>
+<%= component "Article::Markdown" do %>
 
     **There's lots of discourse about "Rails being slow and unable to scale to X" but for most applications, it is simply a non-issue.**
 
@@ -16,22 +16,21 @@ title: Is Rails slow?
 
     Rails does scale well however, with most small to medium sized apps running just fine on a relatively cheap VPS. For those few operating at a far larger scale, infrastructure cost will often be less important than the operational cost of fewer developers being vastly more agile and productive. This is where Rails <span class="shiny">shines.</span>
 
-    ## Reasons Rails Might Be Perceived as Slow
+    ## Why Rails might be perceived as slow
 
     1. **Ruby's Performance**
-        Ruby is an interpreted language, so it’s not as fast as compiled languages like C++ or Go. Rails inherits this limitation because it’s built on Ruby. Ruby supports C, and more recently Rust extensions that can be leveraged for more performance intensive tasks. There is also [Crystal](https://crystal-lang.org) a compiled language with a syntax very similar to Ruby, with very good performance comparable to C# or go.
-        Ruby is a more memory hungry language than some others and concurrency, via [fibers](https://blog.saeloun.com/2022/03/01/ruby-fibers-101/) is a more recent addition to the language that is not heavily leverage by Rails at this point.
-        In terms of pure speed, ruby is broadly comparable to python. Though in recent years ruby is generally faster than python is many scenarios. The ruby core team have recently been [making strides with language performance](https://speed.yjit.org), that gap may widen further in future.
-        The reality is though, compute is cheap and computers are fast. Most languages are perfectly acceptable for web applications. If a language appeals to you, you should use it.
+        Ruby is an interpreted language, so it’s not as fast as compiled languages like C++ or Go. Rails inherits this limitation because it’s built on Ruby. Ruby supports C, and more recently Rust extensions that can be leveraged for more performance intensive tasks. There is also [Crystal](https://crystal-lang.org) a compiled language with a syntax very similar to Ruby, with very good performance comparable to C# or go. Ruby is a more memory hungry language than some others and concurrency, via [fibers](https://blog.saeloun.com/2022/03/01/ruby-fibers-101/) is a more recent addition to the language that is not heavily leverage by Rails at this point.
+        In terms of pure speed, ruby is broadly comparable to python. Though in recent years ruby is generally faster than python is many scenarios. The ruby core team have recently been [making strides with language performance](https://speed.yjit.org), that gap may widen further in future. The reality is though, compute is cheap and computers are fast. Most languages are perfectly acceptable for web applications. If a language appeals to you, you should use it.
 
     2. **Rails' Abstractions**
-        Rails emphasizes developer productivity with many abstractions and conveniences (e.g., ActiveRecord, helpers), which can add overhead compared to lower-level frameworks. These choices are a big part of what makes rails so productive and pleasant to use.
+        Rails emphasizes developer productivity with many abstractions and conveniences, which can add overhead compared to lower-level frameworks. These choices are a big part of what makes rails so productive and pleasant to use and Rails wouldn't be the same without them.
 
     3. **Request Latency**
-        If your app handles high traffic, Rails' default threading model (one request per thread) can become a bottleneck unless properly optimized.
+        If your app handles high traffic, Rails' default threading model (one request per thread) can become a bottleneck unless properly optimized. Though this is also true of many languages.
 
     5. **Default Configurations**
-        Rails ships with defaults that favor convenience and simplicity, not necessarily maximum performance. Out-of-the-box setups might not be optimized for production. However, Rails is not limited by its defaults and high performance applications exist. Rails is used by some of the highest demand websites in the world, including GitHub and Shopify.
+        Rails ships with defaults that favor convenience and simplicity, not necessarily maximum performance. However, Rails is not limited by its defaults and high performance applications exist. Rails is used by some of the highest demand websites in the world, including GitHub and Shopify.
 
   <% end %>
 <% end %>
+

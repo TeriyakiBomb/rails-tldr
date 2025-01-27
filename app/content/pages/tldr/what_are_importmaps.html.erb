@@ -7,7 +7,7 @@ title: What are importmaps?
       It's the default, but optional way of importing Javascript dependencies without the need for a bundler like webpack.
     <% end %>
 
-    <% component.with_markdown_section do %>
+    <%= component "Article::Markdown" do %>
 
       Import maps in Rails provide a way to manage JavaScript dependencies without requiring a bundler like Webpack or Vite.
       **It's the default way of working with Javascript dependencies since Rails 7.0.**

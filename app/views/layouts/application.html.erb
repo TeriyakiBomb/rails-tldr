@@ -21,9 +21,15 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
+
+    <script src="https://kit.fontawesome.com/03184a4ddd.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body class="bg-neutral-100 text-neutral-900 pt-8">
+    <div class="fixed top-0 right-0 -z-10">
+      <%= image_tag "bg.svg" %>
+    </div>
     <nav class="container mx-auto">
       <a href="/"><%= image_tag "logo.svg", class: "w-24" %></a>
 

@@ -5,6 +5,8 @@ Rails.application.configure do
 
   config.hotwire_livereload.listen_paths << Rails.root.join("app/content")
 
+  config.view_component.generate.sidecar = true
+
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
 

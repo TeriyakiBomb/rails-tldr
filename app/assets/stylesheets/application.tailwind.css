@@ -11,6 +11,15 @@ body {
     @apply underline text-teal-500 font-semibold hover:text-teal-400;
   }
 
+  a:after {
+    font-family: FontAwesome;
+    content: "\f08e";
+    display: inline-block;
+    padding-left: 3px;
+    vertical-align: middle;
+    font-size: 8px;
+  }
+
   h1,
   h2,
   h3,
