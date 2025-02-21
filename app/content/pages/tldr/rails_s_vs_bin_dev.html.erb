@@ -1,0 +1,38 @@
+---
+title: Rails s vs bin dev
+wip: true
+---
+
+<%= component "TldrContainer", current_page: current_page do |component| %>
+
+  <% component.with_tldr do %>
+    The `rails` s command only runs the main Rails server, `bin/dev` can run multiple processes in parallel, if in doubt, use `bin/dev`
+  <% end %>
+
+  <%= component "Article::Markdown" do %>
+    You might have watched a Rails tutorial and been told to run `rails s` to start the server. But you've used Tailwind and the watcher hasn't started, none of your classes have compiled! You should use `bin/dev` instead. Sometimes the thing to use can be ambiguous in Rails, which is in part due to the maturity and diverse use cases for Rails.
+
+    The difference between `bin/dev` and `rails s` lies in how they start and manage your Rails application's development environment.
+
+    ### **`rails s`**
+
+    - Starts the Rails server (e.g., Puma by default).
+    - Only launches the application server.
+    - It doesn’t handle other services that your app might depend on, like background jobs, asset watchers (esbuild/Vite), or other processes.
+
+    ---
+
+    ### **`bin/dev`**
+
+    - Starts a **development environment orchestrator**.
+    - Runs multiple processes, not just the Rails server. This can include the Rails application server (via `rails s` or another command), frontend tooling like Vite or Webpack or background job workers like Sidekiq.
+    - `bin/dev` is typically set up using **[foreman](https://github.com/ddollar/foreman)** or **[overmind](https://github.com/DarthSim/overmind)**. These tools manage multiple processes using a `Procfile` (often `Procfile.dev` in Rails apps).
+    - It reads `Procfile.dev` file to determine which services to run.
+
+    A typical `Procfile.dev` might look like this:
+
+    `web: bin/rails server worker: bundle exec sidekiq`
+
+    Foreman is not installed by default, but is automatically installed if you setup a project with a gem that requires it, like Tailwind. `bin/dev` is available in Rails 7 and onwards, with the default project setup, it just runs `rails s` and exists mostly as an on-ramp to later using a tool like foreman later on. Make sense? It's a little confusing, but the best way forward is to just use `bin/dev`
+  <% end %>
+<% end %>
