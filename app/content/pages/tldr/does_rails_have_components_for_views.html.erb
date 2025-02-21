@@ -1,0 +1,40 @@
+---
+title: Does Rails have components for views?
+wip: true
+---
+
+<%= component "TldrContainer", current_page: current_page do |component| %>
+
+  <% component.with_tldr do %>
+    Rails views use partials by default. There are gems that add more fully fledged components to Rails.
+  <% end %>
+
+  <%= component "Article::Markdown" do %>
+   Out of the box, Rails has a pretty flexible view partials system. But there are several gems that add view component systems or extend Rails' partial system. Some of the most prominent gems are:
+   - [ViewComponent](https://viewcomponent.org)
+   - [Phlex](https://www.phlex.fun)
+   - [Nice Partials](https://github.com/bullet-train-co/nice_partials)
+
+   ## Partials
+
+   They are invoked with:
+   `render "partial_name"`
+   You can pass content to them like this:
+   `"partial_name", variable_name_local_to_partial: variable_name_from_current_view`
+
+   ## ViewComponent
+
+   The ViewComponent gem is maintained by GitHub and provides a feature rich and powerful component system for Rails views. It encapsulates both the logic and HTML of a UI element into a Ruby class. They are easily unit testable and also provides previews of components, almost like a lightweight version of Storybook ([You can also use Storybook](https://williamkennedy.ninja/rails/2021/07/25/how-to-setup-storybook-with-rails-view-components-in-under-10-minutes/)).
+
+   ViewComponent also supports named slots, inheriting rails helpers and more. Anecdotally ViewComponent is more performant than standard Rails partials.
+
+
+   More reading:
+   https://guides.rubyonrails.org/layouts_and_rendering.html
+   https://staceymck.medium.com/an-intro-to-partials-and-helpers-in-ruby-on-rails-10d62d85da24
+   https://webcrunch.com/posts/render-partials-rails
+   https://gorails.com/blog/how-to-use-partials-in-rails
+   https://wdi-sg.github.io/gitbook-2018/06-ruby-rails/rails-intro/views.html
+   https://www.honeybadger.io/blog/ruby-view-components/#:~:text=Inspired%20by%20React%2C%20ViewComponents%20are,encapsulated%20view%20components%20in%20Rails.
+  <% end %>
+<% end %>
