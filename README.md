@@ -1,6 +1,4 @@
-# README
-
-## Contribution and writing style
+# Contribution and writing style
 
 tl;dr's are a series of short articles aiming to answer the most commonly asked questions about rails and disambiguate confusing ideas. 
 
@@ -8,8 +6,7 @@ tl;dr's should:
 
 - Be friendly in tone, positive but factual and fair about Rails and both its benefits and shortcomings.
 - Be concise.
-- Should not disparage other frameworks, technologies or approaches.
-- Represent the current state of Rails, ie - focus on features available in recent versions only
+- Represent the current state of Rails, ie - focus on features available in recent versions only.
 - Written to be read by non-rubyists
 - Be written simply. We can assume a reader has _some_ development experience, but not explicitly for novice developers.
 
