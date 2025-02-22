@@ -1,0 +1,90 @@
+---
+title: Can I use Rails with frontend Javascript frameworks?
+wip: true
+---
+
+<%= component "TldrContainer", current_page: current_page do |component| %>
+
+<% component.with_tldr do %>
+  Yes! And there's several ways to do it.
+<% end %>
+
+<%= component "Article::Markdown" do %>
+  <!-- ADD A TOGGLE BETWEEN API MODE AND INERTIA Like a stimulus thing -->
+
+  You can achieve this in various ways with either react, vue or svelte:
+
+    - As a single application with a JS framework as the frontend with either dedicated gems
+    - As a single application with inertia.js
+    - Using Vite
+    - Using rails as an API and work with a JS framework as a separate project
+
+  ## React on Rails
+  https://www.shakacode.com/react-on-rails/docs/
+  https://github.com/reactjs/react-rails
+
+  ## Using Vite Ruby
+
+  Vite is a topic entirely of its own, but anything you can do with vite, you can do with vite ruby. You can find out more in the official [Vite ruby documentation](https://vite-ruby.netlify.app/guide/rails.html)
+
+  There's also this awesome guide by [Máximo Mussini](https://maximomussini.com/posts/a-rubyist-guide-to-vite-js)
+
+  ## Using inertia.js
+
+  [Inertia.js](https://inertiajs.com), in a nutshell, allows you to use javascript SPA frameworks seamlessly with server-side routing. It's great and it works really well in rails, with official support.
+  [Read the docs](https://github.com/inertiajs/inertia-rails)
+
+  ## Running rails as an API only
+  If you want to just use rails as a REST API or use graphQL, you can use rails as an API only by using the  `--api` flag with `rails new`
+
+  `rails new <APP_NAME> --api`
+
+  This strips unnecessary parts of rails for API-only usage, see the table below for more details  on the various API flags or read more about [serving APIs with rails ](https://guides.rubyonrails.org/api_app.html)
+
+  Below was generated with chatGPT, so it may have some inaccuracies
+
+  | **Feature/Behavior**      | `--api`                                                                 | `--skip-api`                                                                  | `--no-api` (default)                                                          |
+  | ------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+  | **Purpose**               | Creates an API-only Rails app optimized for serving JSON.               | Explicitly creates a traditional full-stack Rails app.                        | Defaults to a full-stack Rails app (same as `--skip-api`).                    |
+  | **Controller Base Class** | `ActionController::API` (lighter base class).                           | `ActionController::Base` (full feature set).                                  | `ActionController::Base` (full feature set).                                  |
+  | **Views & Helpers**       | No views, helpers, or assets generated. Focus is on JSON responses.     | Views, helpers, and layouts are generated.                                    | Views, helpers, and layouts are generated.                                    |
+  | **Asset Pipeline**        | Excluded (no Sprockets/propshaft or assets like CSS and JS).            | Fully included (Sprockets/propshaft and asset directories like `app/assets`). | Fully included (Sprockets/propshaft and asset directories like `app/assets`). |
+  | **Middleware**            | Minimal middleware for APIs only (e.g., skips session, flash, cookies). | Full middleware stack for traditional web apps.                               | Full middleware stack for traditional web apps.                               |
+  | **Session & Cookies**     | Excluded by default. Can be added manually.                             | Included by default.                                                          | Included by default.                                                          |
+  | **Flash Messages**        | Excluded.                                                               | Included.                                                                     | Included.                                                                     |
+  | **Generators**            | Focused on models, controllers, and serializers. No assets or helpers.  | Generates models, controllers, views, assets, and helpers.                    | Generates models, controllers, views, assets, and helpers.                    |
+  | **Use Case**              | Ideal for JSON-only APIs or backend services for SPAs/mobile apps.      | Explicitly specifies a traditional server-rendered web app with all features. | Default choice for a full-stack, server-rendered web app.                     |
+
+  ### Summary of Differences:
+  - `--api`: Strips down Rails for an API-only backend.
+  - `--skip-api`: Explicitly requests a full-stack Rails app, even though it's the default.
+  - `--no-api`: Defaults to creating a full-stack app, identical to `--skip-api`.
+
+  ### When to Use Each:
+
+  - **Use `--api`**: When building an API-only backend or microservice.
+  - **Use `--skip-api`**: When you want to explicitly specify a traditional Rails app in scripts or team workflows, or to avoid confusion if Rails defaults change in the future.
+  - **No flag**: When you're building a standard web app and prefer simplicity or don't need to emphasize your choice.
+
+  Further reading:
+  https://thoughtbot.com/blog/how-to-integrate-react-rails
+  https://rubyroidlabs.com/blog/2023/11/how-to-use-ruby-on-rails-with-react-in-2024/
+  https://thoughtbot.com/blog/my-introduction-to-superglue-react-rails
+  https://www.honeybadger.io/blog/react-rails/
+  https://www.honeybadger.io/blog/react-rails/
+  https://medium.com/@oscarreciogonzalez/vue-on-rails-15686b85b1d3
+  https://www.honeybadger.io/blog/building-app-rails-vue-vuex/
+  https://alsohelp.com/blog/ruby-on-rails-and-vuejs-tutorial
+  https://gorails.com/series/vuejs-with-rails
+  https://www.engineyard.com/blog/rails-and-vue-js-part-1/
+  https://alsohelp.com/blog/rails-and-sveltejs-tutorial
+  https://shreyasprakash.com/sveltejs-ruby-rails-setup/
+  https://medium.com/@sfcooper/creating-an-app-with-rails-api-backend-vuejs-frontend-403d2df61dab
+
+  Videos:
+  https://www.youtube.com/watch?v=nKybfmmO7JU
+  https://www.youtube.com/watch?v=2Tm41U-dl24
+  https://www.youtube.com/watch?v=eUedqaHS4RQ
+  <% end %>
+<% end %>
+
