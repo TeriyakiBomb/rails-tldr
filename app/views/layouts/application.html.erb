@@ -26,11 +26,14 @@
 
   </head>
 
-  <body class="bg-neutral-100 text-neutral-900 pt-8">
+  <body class="bg-neutral-100 text-neutral-900 ">
     <div class="fixed top-0 right-0 -z-10">
       <%= image_tag "bg.svg" %>
     </div>
-    <nav class="container mx-auto">
+
+    <%= yield :banner %>
+
+    <nav class="container mx-auto pt-8">
       <a href="/"><%= image_tag "logo.svg", class: "w-24" %></a>
 
     </nav>

@@ -1,9 +1,5 @@
----
-title: Getting started with Sitepress in Rails
----
-
 <ul>
   <% TldrPage.all.each do |page| %>
-   <li><%= link_to page.title, page.request_path %></li>
+   <li><%= link_to page.title, page.request_path, class:"font-bold hover:text-gray-700" %></li>
   <% end %>
 </ul>
