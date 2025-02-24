@@ -1,0 +1,21 @@
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @pages.each do |page| %>
+            <tr>
+                <td>
+                    <span class="font-bold"><%= page.title %></span>
+                    
+                </td>
+                <td>
+                    <%= link_to "Read more", page.request_path, class: "hover:text-teal-500" %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
