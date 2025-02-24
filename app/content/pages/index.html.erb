@@ -1,5 +1,1 @@
-<ul>
-  <% TldrPage.all.each do |page| %>
-   <li><%= link_to page.title, page.request_path, class:"font-bold hover:text-teal-500" %></li>
-  <% end %>
-</ul>
+<%= render(TldrTableComponent.new(pages: TldrPage.all)) %>
